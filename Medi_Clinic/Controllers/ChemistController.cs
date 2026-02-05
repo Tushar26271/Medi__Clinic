@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Medi_Clinic.Controllers
+namespace Clinic_Automation.Controllers
 {
-    public class patient : Controller
+    public class ChemistController : Controller
     {
         public IActionResult Index()
         {
