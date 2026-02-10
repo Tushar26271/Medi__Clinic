@@ -1,5 +1,4 @@
-﻿using Medi_Clinic.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Medi_Clinic.Controllers
 {
-    [Authorize(Roles = "Supplier")]
-    public class SupplierController : Controller
+    [Authorize(Roles = "Physician")]
+    public class PhysicianController : Controller
     {
         public IActionResult Index()
         {
@@ -19,4 +18,3 @@ namespace Medi_Clinic.Controllers
         }
     }
 }
-

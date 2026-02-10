@@ -1,8 +1,7 @@
 using System.Diagnostics;
-using Clinic_Automation.Models;
 using Microsoft.AspNetCore.Mvc;
-
-namespace Clinic_Automation.Controllers
+using Medi_Clinic.Models;
+namespace Medi_Clinic.Controllers
 {
     public class HomeController : Controller
     {
@@ -10,11 +9,13 @@ namespace Clinic_Automation.Controllers
         {
             return View();
         }
+        
 
         public IActionResult Privacy()
         {
             return View();
         }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
