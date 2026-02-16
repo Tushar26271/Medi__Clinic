@@ -9,7 +9,7 @@ public partial class Appointment
 
     public int PatientId { get; set; }
 
-    public DateTime AppointmentDate { get; set; }
+    public DateTime? AppointmentDate { get; set; }
 
     public string? Criticality { get; set; }
 
