@@ -15,7 +15,7 @@ public partial class Drug
 
     public string? Dosage { get; set; }
 
-    public string DrugStatus { get; set; } = null!;
+    public string? DrugStatus { get; set; }
 
     public virtual ICollection<PhysicianPrescrip> PhysicianPrescrips { get; set; } = new List<PhysicianPrescrip>();
 
