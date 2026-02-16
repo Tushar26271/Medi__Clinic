@@ -15,5 +15,5 @@ public partial class User
 
     public int? RoleReferenceId { get; set; }
 
-    public string? Status { get; set; }
+    public string Status { get; set; } = null!;
 }

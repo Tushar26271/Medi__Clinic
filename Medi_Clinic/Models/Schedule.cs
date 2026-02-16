@@ -11,9 +11,9 @@ public partial class Schedule
 
     public int AppointmentId { get; set; }
 
-    public DateOnly? ScheduleDate { get; set; }
+    public DateOnly ScheduleDate { get; set; }
 
-    public TimeOnly? ScheduleTime { get; set; }
+    public TimeOnly ScheduleTime { get; set; }
 
     public string? ScheduleStatus { get; set; }
 

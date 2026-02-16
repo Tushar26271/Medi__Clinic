@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Medi_Clinic.Models;
@@ -12,7 +11,7 @@ public partial class DrugRequest
 
     public string? DrugsInfoText { get; set; }
 
-    public DateTime? RequestDate { get; set; }
+    public DateTime RequestDate { get; set; }
 
     public string? RequestStatus { get; set; }
 

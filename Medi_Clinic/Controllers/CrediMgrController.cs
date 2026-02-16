@@ -1,12 +1,12 @@
-﻿using Medi_Clinic.Models.ViewModel;
-using Medi_Clinic.Models;
+﻿using Medi_Clinic.Models;
+using Medi_Clinic.Models.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Security.Principal;
 
-namespace Medi_Clinic_Lab.Controllers
+namespace Medi_Clinic.Controllers
 {
     public class CrediMgrController : Controller
     {
@@ -21,21 +21,19 @@ namespace Medi_Clinic_Lab.Controllers
         public async Task<IActionResult> Login(string username, string password)
         {
 
-            Medi_Clinic.Models.MediCureContext db =new Medi_Clinic.Models.MediCureContext();
+            Models.MediCureContext db = new Models.MediCureContext();
 
-            var usr = db.Users.FirstOrDefault(u => u.UserName == username && u.Password == password && u.Status=="Active");
+            var usr = db.Users.FirstOrDefault(u => u.UserName == username && u.Password == password);
 
 
 
             if (usr != null)
             {
                 var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, username),
-                    new Claim(ClaimTypes.Role, usr.Role),
-                    new Claim("RoleReferenceId", usr.RoleReferenceId.ToString()),
-                    new Claim("UserId", usr.UserId.ToString())
-                };
+        {
+            new Claim(ClaimTypes.Name, username),
+            new Claim(ClaimTypes.Role, usr.Role)
+        };
 
                 var identity = new ClaimsIdentity(
                     claims, CookieAuthenticationDefaults.AuthenticationScheme);

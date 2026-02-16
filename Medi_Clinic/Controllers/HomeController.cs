@@ -1,7 +1,6 @@
-using Medi_Clinic.Models;
-
-using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using Medi_Clinic.Models;
 namespace Medi_Clinic.Controllers
 {
     public class HomeController : Controller
@@ -16,7 +15,7 @@ namespace Medi_Clinic.Controllers
         {
             return View();
         }
-
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

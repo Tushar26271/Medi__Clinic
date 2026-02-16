@@ -49,17 +49,21 @@ public partial class MediCureContext : DbContext
     {
         modelBuilder.Entity<Appointment>(entity =>
         {
-            entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__8ECDFCA2EFA5251D");
+            entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__8ECDFCA21454DEE0");
 
             entity.ToTable("Appointment");
 
+            entity.HasIndex(e => e.PatientId, "IDX_Appointment_PatientID");
+
             entity.Property(e => e.AppointmentId).HasColumnName("AppointmentID");
             entity.Property(e => e.AppointmentDate).HasColumnType("datetime");
-            entity.Property(e => e.Criticality).HasMaxLength(20);
+            entity.Property(e => e.Criticality).HasMaxLength(50);
             entity.Property(e => e.Note).HasMaxLength(500);
             entity.Property(e => e.PatientId).HasColumnName("PatientID");
-            entity.Property(e => e.Reason).HasMaxLength(200);
-            entity.Property(e => e.ScheduleStatus).HasMaxLength(20);
+            entity.Property(e => e.Reason).HasMaxLength(255);
+            entity.Property(e => e.ScheduleStatus)
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             entity.HasOne(d => d.Patient).WithMany(p => p.Appointments)
                 .HasForeignKey(d => d.PatientId)
@@ -69,35 +73,39 @@ public partial class MediCureContext : DbContext
 
         modelBuilder.Entity<Chemist>(entity =>
         {
-            entity.HasKey(e => e.ChemistId).HasName("PK__Chemist__C0D5B7B4BD52D03E");
+            entity.HasKey(e => e.ChemistId).HasName("PK__Chemist__C0D5B7B44A99D6F1");
 
             entity.ToTable("Chemist");
 
             entity.Property(e => e.ChemistId).HasColumnName("ChemistID");
-            entity.Property(e => e.Address).HasMaxLength(200);
-            entity.Property(e => e.ChemistName).HasMaxLength(150);
-            entity.Property(e => e.ChemistStatus).HasMaxLength(20);
+            entity.Property(e => e.Address).HasMaxLength(255);
+            entity.Property(e => e.ChemistName).HasMaxLength(100);
+            entity.Property(e => e.ChemistStatus)
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e => e.Phone).HasMaxLength(15);
+            entity.Property(e => e.Phone).HasMaxLength(20);
             entity.Property(e => e.Summary).HasMaxLength(500);
         });
 
         modelBuilder.Entity<Drug>(entity =>
         {
-            entity.HasKey(e => e.DrugId).HasName("PK__Drug__908D66F6A8FF4A2E");
+            entity.HasKey(e => e.DrugId).HasName("PK__Drug__908D66F6725973F2");
 
             entity.ToTable("Drug");
 
             entity.Property(e => e.DrugId).HasColumnName("DrugID");
             entity.Property(e => e.Description).HasMaxLength(500);
             entity.Property(e => e.Dosage).HasMaxLength(50);
-            entity.Property(e => e.DrugStatus).HasMaxLength(20);
-            entity.Property(e => e.DrugTitle).HasMaxLength(150);
+            entity.Property(e => e.DrugStatus)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.DrugTitle).HasMaxLength(100);
         });
 
         modelBuilder.Entity<DrugRequest>(entity =>
         {
-            entity.HasKey(e => e.DrugRequestId).HasName("PK__DrugRequ__AEE9D65039A43FCE");
+            entity.HasKey(e => e.DrugRequestId).HasName("PK__DrugRequ__AEE9D650675443F0");
 
             entity.ToTable("DrugRequest");
 
@@ -105,7 +113,9 @@ public partial class MediCureContext : DbContext
             entity.Property(e => e.DrugsInfoText).HasMaxLength(500);
             entity.Property(e => e.PhysicianId).HasColumnName("PhysicianID");
             entity.Property(e => e.RequestDate).HasColumnType("datetime");
-            entity.Property(e => e.RequestStatus).HasMaxLength(20);
+            entity.Property(e => e.RequestStatus)
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             entity.HasOne(d => d.Physician).WithMany(p => p.DrugRequests)
                 .HasForeignKey(d => d.PhysicianId)
@@ -115,40 +125,44 @@ public partial class MediCureContext : DbContext
 
         modelBuilder.Entity<Patient>(entity =>
         {
-            entity.HasKey(e => e.PatientId).HasName("PK__Patient__970EC3466C2E38E5");
+            entity.HasKey(e => e.PatientId).HasName("PK__Patient__970EC34610E94BC7");
 
             entity.ToTable("Patient");
 
             entity.Property(e => e.PatientId).HasColumnName("PatientID");
-            entity.Property(e => e.Address).HasMaxLength(200);
+            entity.Property(e => e.Address).HasMaxLength(255);
             entity.Property(e => e.Dob).HasColumnName("DOB");
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.Gender).HasMaxLength(10);
             entity.Property(e => e.PatientName).HasMaxLength(100);
-            entity.Property(e => e.PatientStatus).HasMaxLength(20);
-            entity.Property(e => e.Phone).HasMaxLength(15);
+            entity.Property(e => e.PatientStatus)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Phone).HasMaxLength(20);
             entity.Property(e => e.Summary).HasMaxLength(500);
         });
 
         modelBuilder.Entity<Physician>(entity =>
         {
-            entity.HasKey(e => e.PhysicianId).HasName("PK__Physicia__DFF5ED731921C420");
+            entity.HasKey(e => e.PhysicianId).HasName("PK__Physicia__DFF5ED7336E83973");
 
             entity.ToTable("Physician");
 
             entity.Property(e => e.PhysicianId).HasColumnName("PhysicianID");
-            entity.Property(e => e.Address).HasMaxLength(200);
+            entity.Property(e => e.Address).HasMaxLength(255);
             entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e => e.Phone).HasMaxLength(15);
+            entity.Property(e => e.Phone).HasMaxLength(20);
             entity.Property(e => e.PhysicianName).HasMaxLength(100);
-            entity.Property(e => e.PhysicianStatus).HasMaxLength(20);
+            entity.Property(e => e.PhysicianStatus)
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.Specialization).HasMaxLength(100);
             entity.Property(e => e.Summary).HasMaxLength(500);
         });
 
         modelBuilder.Entity<PhysicianAdvice>(entity =>
         {
-            entity.HasKey(e => e.PhysicianAdviceId).HasName("PK__Physicia__82C62610698365A1");
+            entity.HasKey(e => e.PhysicianAdviceId).HasName("PK__Physicia__82C62610EA343150");
 
             entity.ToTable("PhysicianAdvice");
 
@@ -165,15 +179,17 @@ public partial class MediCureContext : DbContext
 
         modelBuilder.Entity<PhysicianPrescrip>(entity =>
         {
-            entity.HasKey(e => e.PhysicianPrescripId).HasName("PK__Physicia__DC5A5520F253922F");
+            entity.HasKey(e => e.PhysicianPrescripId).HasName("PK__Physicia__DC5A55205FA9416D");
 
             entity.ToTable("PhysicianPrescrip");
+
+            entity.HasIndex(e => e.DrugId, "IDX_Prescrip_DrugID");
 
             entity.Property(e => e.PhysicianPrescripId).HasColumnName("PhysicianPrescripID");
             entity.Property(e => e.Dosage).HasMaxLength(50);
             entity.Property(e => e.DrugId).HasColumnName("DrugID");
             entity.Property(e => e.PhysicianAdviceId).HasColumnName("PhysicianAdviceID");
-            entity.Property(e => e.Prescription).HasMaxLength(200);
+            entity.Property(e => e.Prescription).HasMaxLength(255);
 
             entity.HasOne(d => d.Drug).WithMany(p => p.PhysicianPrescrips)
                 .HasForeignKey(d => d.DrugId)
@@ -188,14 +204,16 @@ public partial class MediCureContext : DbContext
 
         modelBuilder.Entity<PurchaseOrderHeader>(entity =>
         {
-            entity.HasKey(e => e.Poid).HasName("PK__Purchase__5F02A2F408E0593C");
+            entity.HasKey(e => e.Poid).HasName("PK__Purchase__5F02A2F4F655B24A");
 
             entity.ToTable("PurchaseOrderHeader");
 
+            entity.HasIndex(e => e.SupplierId, "IDX_PO_SupplierID");
+
+            entity.HasIndex(e => e.Pono, "UQ__Purchase__5F02AA86FC97F4FC").IsUnique();
+
             entity.Property(e => e.Poid).HasColumnName("POID");
-            entity.Property(e => e.Podate)
-                .HasColumnType("datetime")
-                .HasColumnName("PODate");
+            entity.Property(e => e.Podate).HasColumnName("PODate");
             entity.Property(e => e.Pono)
                 .HasMaxLength(50)
                 .HasColumnName("PONo");
@@ -204,18 +222,20 @@ public partial class MediCureContext : DbContext
             entity.HasOne(d => d.Supplier).WithMany(p => p.PurchaseOrderHeaders)
                 .HasForeignKey(d => d.SupplierId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_PO_Supplier");
+                .HasConstraintName("FK_POHeader_Supplier");
         });
 
         modelBuilder.Entity<PurchaseProductLine>(entity =>
         {
-            entity.HasKey(e => e.PurchaseProductLineId).HasName("PK__Purchase__E528D5A508C85F4A");
+            entity.HasKey(e => e.Ppid).HasName("PK__Purchase__5FD889CDE152094A");
 
             entity.ToTable("PurchaseProductLine");
 
-            entity.Property(e => e.PurchaseProductLineId).HasColumnName("PurchaseProductLineID");
+            entity.HasIndex(e => e.Poid, "IDX_PPL_POID");
+
+            entity.Property(e => e.Ppid).HasColumnName("PPID");
             entity.Property(e => e.DrugId).HasColumnName("DrugID");
-            entity.Property(e => e.Note).HasMaxLength(200);
+            entity.Property(e => e.Note).HasMaxLength(255);
             entity.Property(e => e.Poid).HasColumnName("POID");
 
             entity.HasOne(d => d.Drug).WithMany(p => p.PurchaseProductLines)
@@ -231,14 +251,18 @@ public partial class MediCureContext : DbContext
 
         modelBuilder.Entity<Schedule>(entity =>
         {
-            entity.HasKey(e => e.ScheduleId).HasName("PK__Schedule__9C8A5B69CFCA551A");
+            entity.HasKey(e => e.ScheduleId).HasName("PK__Schedule__9C8A5B692A2A5895");
 
             entity.ToTable("Schedule");
+
+            entity.HasIndex(e => e.PhysicianId, "IDX_Schedule_PhysicianID");
 
             entity.Property(e => e.ScheduleId).HasColumnName("ScheduleID");
             entity.Property(e => e.AppointmentId).HasColumnName("AppointmentID");
             entity.Property(e => e.PhysicianId).HasColumnName("PhysicianID");
-            entity.Property(e => e.ScheduleStatus).HasMaxLength(20);
+            entity.Property(e => e.ScheduleStatus)
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             entity.HasOne(d => d.Appointment).WithMany(p => p.Schedules)
                 .HasForeignKey(d => d.AppointmentId)
@@ -253,30 +277,36 @@ public partial class MediCureContext : DbContext
 
         modelBuilder.Entity<Supplier>(entity =>
         {
-            entity.HasKey(e => e.SupplierId).HasName("PK__Supplier__4BE666940B779F3F");
+            entity.HasKey(e => e.SupplierId).HasName("PK__Supplier__4BE66694CF9B7AE5");
 
             entity.ToTable("Supplier");
 
             entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
-            entity.Property(e => e.Address).HasMaxLength(200);
+            entity.Property(e => e.Address).HasMaxLength(255);
             entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e => e.Phone).HasMaxLength(15);
-            entity.Property(e => e.SupplierName).HasMaxLength(150);
-            entity.Property(e => e.SupplierStatus).HasMaxLength(20);
+            entity.Property(e => e.Phone).HasMaxLength(20);
+            entity.Property(e => e.SupplierName).HasMaxLength(100);
+            entity.Property(e => e.SupplierStatus)
+                .HasMaxLength(50)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__User__1788CCACE1983D67");
+            entity.HasKey(e => e.UserId).HasName("PK__User__1788CCAC7E005937");
 
             entity.ToTable("User");
 
+            entity.HasIndex(e => e.UserName, "UQ__User__C9F28456FBA718F4").IsUnique();
+
             entity.Property(e => e.UserId).HasColumnName("UserID");
-            entity.Property(e => e.Password).HasMaxLength(200);
+            entity.Property(e => e.Password).HasMaxLength(255);
             entity.Property(e => e.Role).HasMaxLength(50);
             entity.Property(e => e.RoleReferenceId).HasColumnName("RoleReferenceID");
-            entity.Property(e => e.Status).HasMaxLength(20);
-            entity.Property(e => e.UserName).HasMaxLength(100);
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.UserName).HasMaxLength(50);
         });
 
         OnModelCreatingPartial(modelBuilder);
