@@ -7,9 +7,9 @@ public partial class PurchaseOrderHeader
 {
     public int Poid { get; set; }
 
-    public string Pono { get; set; } = null!;
+    public string? Pono { get; set; }
 
-    public DateOnly Podate { get; set; }
+    public DateTime? Podate { get; set; }
 
     public int SupplierId { get; set; }
 
