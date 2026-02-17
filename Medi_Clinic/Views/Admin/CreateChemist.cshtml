@@ -35,14 +35,12 @@
                 <input asp-for="Summary" class="form-control" />
                 <span asp-validation-for="Summary" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ChemistStatus" class="control-label"></label>
-                <input asp-for="ChemistStatus" class="form-control" />
-                <span asp-validation-for="ChemistStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            
+            <div class="form-group form-actions-fix">
                 <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-action="ChemistGetDetails" class="btn-back">Back to List</a>
+                <a asp-action="ChemistGetDetails" class="btn btn-secondary btn-back-fix">
+                    Back to List
+                </a>
             </div>
         </form>
     </div>

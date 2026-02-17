@@ -1,36 +1,105 @@
 ﻿@model Medi_Clinic.Models.ViewModel.LoginViewModel
 @{
     ViewData["Title"] = "Login";
+    Layout = null;
 }
 
-<h1>Login</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
 
-<h4>LoginViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Login" asp-controller="Credimgr">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-            <IBM-tag-helper id="demo" name="Ganesh"></IBM-tag-helper>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
+        .login-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .login-title {
+            font-weight: 600;
+            color: #2a5298;
+        }
+
+        .form-control {
+            height: 48px;
+            border-radius: 10px;
+        }
+
+        .btn-login {
+            height: 48px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .forgot-link {
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+            .forgot-link:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+
+        <div class="text-center mb-4">
+            <h2 class="login-title">Medi_Clinic</h2>
+            <p class="text-muted">Sign in to your account</p>
+        </div>
+
+        <form asp-action="Login" asp-controller="Credimgr" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label"></label>
+                <input asp-for="UserName" class="form-control" placeholder="Enter your username" />
+                <span asp-validation-for="UserName" class="text-danger small"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember Me</label>
+                </div>
+                <a asp-action="ForgotPassword" asp-controller="Credimgr" class="forgot-link">
+                    Forgot Password?
+                </a>
             </div>
+
+            <button type="submit" class="btn btn-primary w-100 btn-login">
+                Login
+            </button>
+
         </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    </div>
+
+</body>
+</html>
