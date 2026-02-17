@@ -2,6 +2,122 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 42px;
+        font-weight: 700;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+        margin-top: 15px;
+        opacity: 0.9;
+    }
+
+    .btn-hero {
+        margin-top: 25px;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+
+    .features-section {
+        padding: 60px 20px;
+        background-color: #f8f9fa;
+    }
+
+    .feature-card {
+        border: none;
+        border-radius: 12px;
+        transition: 0.3s ease;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+    .feature-icon {
+        font-size: 40px;
+        color: #2a5298;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 40px;
+    }
+</style>
+
+<!-- HERO SECTION -->
+<div class="hero-section">
+    <div class="container">
+        <h1 class="hero-title">Clinic Automation System</h1>
+        <p class="hero-subtitle">
+            Manage Patients, Doctors, Appointments & Reports seamlessly in one secure platform.
+        </p>
+        <a asp-controller="Credimgr" asp-action="Login" class="btn btn-light btn-hero">
+            Get Started
+        </a>
+    </div>
+</div>
+
+<!-- FEATURES SECTION -->
+<div class="features-section">
+    <div class="container">
+        <h2 class="section-title">Core Features</h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-3">
+                <div class="card feature-card p-4 text-center">
+                    <div class="feature-icon">👨‍⚕️</div>
+                    <h5>Doctor Management</h5>
+                    <p>Manage doctor profiles, specializations, and schedules efficiently.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card feature-card p-4 text-center">
+                    <div class="feature-icon">🧑‍🤝‍🧑</div>
+                    <h5>Patient Records</h5>
+                    <p>Securely store and manage patient details and medical history.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card feature-card p-4 text-center">
+                    <div class="feature-icon">📅</div>
+                    <h5>Appointments</h5>
+                    <p>Schedule and track appointments with automated reminders.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card feature-card p-4 text-center">
+                    <div class="feature-icon">📊</div>
+                    <h5>Reports & Analytics</h5>
+                    <p>Generate reports and insights for better decision making.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- CALL TO ACTION -->
+<div class="text-center py-5">
+    <h3>Ready to simplify clinic operations?</h3>
+    <a asp-controller="Credimgr" asp-action="Register" class="btn btn-primary mt-3 px-4 py-2">
+        Create an Account
+    </a>
 </div>
