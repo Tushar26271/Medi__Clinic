@@ -10,7 +10,12 @@ namespace Medi_Clinic_Lab.Controllers
 {
     public class CrediMgrController : Controller
     {
-        
+        private readonly MediCureContext _context;
+        public CrediMgrController(MediCureContext context)
+        {
+            _context = context;
+        }
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -68,6 +73,30 @@ namespace Medi_Clinic_Lab.Controllers
             
             return View();
         }
+        // GET: Patients/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
 
+        // POST: Patients/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("PatientId,PatientName,Dob,Gender,Address,Phone,Email,Summary")] Patient patient)
+        {
+            if (ModelState.IsValid)
+            {
+                patient.PatientStatus = "Pending";
+                _context.Add(patient);
+                await _context.SaveChangesAsync();
+                TempData["ShowSuccess"] = true;
+                TempData["SuccessMessage"] =
+                "Record created successfully. Your temporary password is your name followed by @ and the last four digits of your registered phone number.";
+                return RedirectToAction("Index", "Home");
+            }
+            return View(patient);
+        }
     }
 }
