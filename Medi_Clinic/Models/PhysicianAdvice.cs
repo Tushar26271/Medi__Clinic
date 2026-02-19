@@ -5,6 +5,9 @@ namespace Medi_Clinic.Models;
 
 public partial class PhysicianAdvice
 {
+    public int Id { get; set; }
+
+    public int AppointmentId { get; set; }
     public int PhysicianAdviceId { get; set; }
 
     public int ScheduleId { get; set; }
@@ -16,4 +19,7 @@ public partial class PhysicianAdvice
     public virtual ICollection<PhysicianPrescrip> PhysicianPrescrips { get; set; } = new List<PhysicianPrescrip>();
 
     public virtual Schedule Schedule { get; set; } = null!;
+    public Appointment? Appointment { get; set; }
+
 }
+

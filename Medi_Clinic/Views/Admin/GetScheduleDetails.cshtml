@@ -30,9 +30,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Physician.PhysicianName)
             </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ScheduleStatus)
-                </th>
             <th></th>
         </tr>
     </thead>
@@ -53,9 +50,6 @@
             <td>
                     @Html.DisplayFor(modelItem => item.Physician.PhysicianName)
             </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ScheduleStatus)
-                    </td>
             @* <td>
                 <a asp-action="Edit" asp-route-id="@item.ScheduleId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ScheduleId">Details</a> |

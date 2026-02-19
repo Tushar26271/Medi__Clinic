@@ -4,18 +4,8 @@
     ViewData["Title"] = "Assign Doctor";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-@{
-    var doctorError = TempData["DoctorError"] as string;
-}
 
-@if (!string.IsNullOrEmpty(doctorError))
-{
-    <script>
-        alert('@doctorError');
-    </script>
-}
 
-<div asp-validation-summary="All" class="text-danger"></div>
         <div class="admin-form-wrapper">
             <div class="admin-form-card">
         <h4 class="form-title"><center>Assign Doctor</center></h4>
@@ -25,32 +15,7 @@
             <input type="hidden"
                    name="AppointmentID"
                    value="@Model.AppointmentId" />
-            
-            
-            <div class="mb-3">
-                <label class="form-label">Patient Name</label>
-                <input type="text"
-                       name="PatientName"
-                       class="form-control"
-                       value="@Model.Patient.PatientName"
-                       readonly />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Criticality</label>
-                <input type="text"
-                       name="Criticality"
-                       class="form-control"
-                       value="@Model.Criticality"
-                       readonly />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Reason</label>
-                <input type="text"
-                       name="Reason"
-                       class="form-control"
-                       value="@Model.Reason"
-                       readonly />
-            </div>
+
             <div class="mb-3">
                 <label class="form-label">Select Doctor</label>
                 <select name="PhysicianID"
@@ -60,6 +25,7 @@
                     <option value="">-- Select Doctor --</option>
                 </select>
             </div>
+
             <div class="mb-3">
                 <label class="form-label">Date</label>
                 <input type="date"
@@ -74,17 +40,12 @@
                 <input type="time"
                        name="ScheduleTime"
                        class="form-control"
-                       value="@Model.AppointmentDate?.ToString("HH:mm")"
                        required />
             </div>
 
             <button type="submit" class="btn btn-success">
                 Assign
             </button>
-            
-            <a asp-action="PendingAppointments" class="btn btn-secondary btn-back-fix">
-                Back to List
-            </a>
 
         </form>
     </div>

@@ -113,24 +113,6 @@ body {
     overflow-x: auto;
 }
 
-/* =====================================
-   FIX CREATE & BACK ALIGNMENT
-===================================== */
-
-.form-actions-fix {
-    display: flex;
-    align-items: center; /* This fixes vertical misalignment */
-    gap: 16px;
-}
-
-    .form-actions-fix .btn {
-        height: 42px; /* Force same height */
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-
 /* =========================================
    STATUS BADGES
 ========================================= */

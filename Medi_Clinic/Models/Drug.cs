@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Medi_Clinic.Models;
 
 public partial class Drug
 {
     public int DrugId { get; set; }
-
+    [Required]
     public string DrugTitle { get; set; } = null!;
 
     public string? Description { get; set; }
