@@ -157,6 +157,11 @@ public partial class MediCureContext : DbContext
             entity.Property(e => e.Note).HasMaxLength(500);
             entity.Property(e => e.ScheduleId).HasColumnName("ScheduleID");
 
+            entity.Ignore(e => e.Id);
+            entity.Ignore(e => e.AppointmentId);
+            entity.Ignore(e => e.Appointment);
+
+
             entity.HasOne(d => d.Schedule).WithMany(p => p.PhysicianAdvices)
                 .HasForeignKey(d => d.ScheduleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -174,6 +179,7 @@ public partial class MediCureContext : DbContext
             entity.Property(e => e.DrugId).HasColumnName("DrugID");
             entity.Property(e => e.PhysicianAdviceId).HasColumnName("PhysicianAdviceID");
             entity.Property(e => e.Prescription).HasMaxLength(200);
+
 
             entity.HasOne(d => d.Drug).WithMany(p => p.PhysicianPrescrips)
                 .HasForeignKey(d => d.DrugId)

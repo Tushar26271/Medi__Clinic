@@ -1,78 +1,99 @@
-﻿
-
-
-<h1>Index</h1>
+﻿@model Medi_Clinic.Models.Patient
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Patient Dashboard";
     Layout = "~/Views/Shared/_LayoutPatient.cshtml";
 }
 
-<h2>Patient Dashboard</h2>
+<div class="container mt-4">
 
-<p class="mt-3">
-    <div>
-        <h3>Profile</h3>
-        <p>Age: @Model.Patient.Dob</p>
-        <p>Gender: @Model.Patient.Gender</p>
-        <p>Phone: @Model.Patient.Phone</p>
-    </div>
+    @if (Model != null)
+    {
+        <!-- Welcome Card -->
+        <div class="card shadow-lg border-0 mb-4">
+            <div class="card-body d-flex justify-content-between align-items-center">
 
-    <hr />
+                <div>
+                    <h2 class="fw-bold mb-1">Welcome, @Model.PatientName 👋</h2>
+                    <p class="text-muted mb-0">
+                        <i class="bi bi-envelope"></i> @Model.Email
+                    </p>
+                </div>
 
-    <h3>Appointments</h3>
-    <table class="table">
-        <tr>
-            <th>Doctor</th>
-            <th>Date</th>
-            <th>Status</th>
-        </tr>
-        @foreach (var item in Model.Appointments)
-        {
-            <tr>
-                @*  <td>@item.AppointmentDate.ToShortDateString()</td> *@
-                <td>@item.ScheduleStatus</td>
-            </tr>
-        }
-    </table>
-    i
-    <hr />
+                <div>
+                    <a asp-controller="Patient" asp-action="Edit" asp-route-id="@Model.PatientId"
+                       class="btn btn-outline-primary me-2">
+                        <i class="bi bi-pencil-square"></i> Edit Profile
+                    </a>
 
-    <h3></h3>
-    <table class="table">
-        <tr>
-            <th>Date</th>
-            <th>Diagnosis</th>
-            <th>Treatment</th>
-        </tr>
-        @foreach (var record in Model.PhysicianAdvices)
-        {
-            <tr>
-                <td>@record.Advice</td>
-                <td>@record.Note</td>
-            </tr>
-        }
-    </table>
+                    <a asp-controller="Patient" asp-action="Details" asp-route-id="@Model.PatientId"
+                       class="btn btn-outline-secondary">
+                        <i class="bi bi-person"></i> Details
+                    </a>
+                </div>
 
-    <hr />
+            </div>
+        </div>
 
-    <h3>Prescriptions</h3>
-    <table class="table">
-        <tr>
-            <th>Date</th>
-            <th>Medicine</th>
-            <th>Dosage</th>
-        </tr>
-        @foreach (var pres in Model.PhysicianPrescrip)
-        {
-            <tr>
-                <td>@pres.Drug</td>
-                <td>@pres.Dosage</td>
-            </tr>
-        }
-    </table>
+        <!-- Quick Actions -->
+        <h4 class="mb-3 fw-semibold text-muted">Quick Actions</h4>
 
-</p>
+        <div class="row g-4">
 
-<hr />
+            <!-- Book Appointment -->
+            <div class="col-md-4">
+                <div class="card dashboard-card text-center p-4 border-0 shadow-sm">
+                    <div class="icon-circle bg-primary text-white mb-3">
+                        <i class="bi bi-calendar-plus"></i>
+                    </div>
+                    <h5 class="fw-bold">Book Appointment</h5>
+                    <p class="text-muted">Schedule a new doctor visit</p>
+                    <a asp-controller="Patient" asp-action="CreateAppointment"
+                       class="btn btn-primary w-100">
+                        Book Now
+                    </a>
+                </div>
+            </div>
 
+            <!-- My Appointments -->
+            <div class="col-md-4">
+                <div class="card dashboard-card text-center p-4 border-0 shadow-sm">
+                    <div class="icon-circle bg-success text-white mb-3">
+                        <i class="bi bi-clipboard-check"></i>
+                    </div>
+                    <h5 class="fw-bold">My Appointments</h5>
+                    <p class="text-muted">View your bookings</p>
+                    <a asp-controller="Patient" asp-action="MyAppointments"
+                       asp-route-id="@Model.PatientId"
+                       class="btn btn-success w-100">
+                        View
+                    </a>
+                </div>
+            </div>
+
+            <!-- Schedule -->
+            <div class="col-md-4">
+                <div class="card dashboard-card text-center p-4 border-0 shadow-sm">
+                    <div class="icon-circle bg-info text-white mb-3">
+                        <i class="bi bi-clock"></i>
+                    </div>
+                    <h5 class="fw-bold">Doctor Schedule</h5>
+                    <p class="text-muted">Check available timings</p>
+                    <a asp-action="ViewScheduleAppointment"
+                       asp-route-id="@Model.PatientId"
+                       class="btn btn-info w-100 text-white">
+                        Check Schedule
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning mt-4">
+            No patient data found.
+        </div>
+    }
+
+</div>
