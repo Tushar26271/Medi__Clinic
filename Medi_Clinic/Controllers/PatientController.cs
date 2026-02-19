@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-﻿using ClinicManagementSystem.ViewModels;
-using Medi_Clinic.Models;
-using Microsoft.AspNetCore.Mvc;
-=======
 ﻿using Medi_Clinic.Models;
 
 using Microsoft.AspNetCore.Authorization;
@@ -14,42 +9,13 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
->>>>>>> 091369cdc7bdbf7b1644d94a099dd40c11a03096
 
-public class PatientController : Controller
+
+namespace Medi_Clinic.Controllers
 {
-    private readonly MediCureContext _context;
-
-    public PatientController(MediCureContext context)
+    [Authorize(Roles = "Patient")]
+    public class PatientController : Controller
     {
-<<<<<<< HEAD
-        _context = context;
-    }
-
-    // NEW METHOD (paste this)
-    public IActionResult Index()
-    {
-        var firstPatient = _context.Patients.FirstOrDefault();
-
-        if (firstPatient == null)
-            return Content("No patients in database!");
-
-        return RedirectToAction("Index", new { id = firstPatient.PatientId });
-    }
-
-    // EXISTING METHOD
-    public IActionResult Index(int id)
-    {
-        var patient = _context.Patients.FirstOrDefault(p => p.PatientId == id);
-
-        var viewModel = new PatientDashboardViewModel
-        {
-            Patient = patient,
-            Appointments = _context.Appointments.Where(a => a.PatientId == id).ToList(),
-        };
-
-        return View(viewModel);
-=======
         private readonly MediCureContext _context;
         public PatientController(MediCureContext context)
         {
@@ -66,6 +32,5 @@ public class PatientController : Controller
 
             return View(patient);
         }
->>>>>>> 091369cdc7bdbf7b1644d94a099dd40c11a03096
     }
 }
